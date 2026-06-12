@@ -683,6 +683,71 @@ body::before {
   0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
   100% { transform: translateY(100vh) rotate(540deg); opacity: 0; }
 }
+  /* Floating WhatsApp */
+
+.floating-wa {
+  position: fixed;
+  right: 18px;
+  bottom: 85px;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  z-index: 99999;
+
+  box-shadow: 0 10px 30px rgba(37,211,102,0.45);
+
+  animation: floatWA 2s ease-in-out infinite;
+}
+
+.floating-wa svg {
+  width: 34px;
+  height: 34px;
+  z-index: 2;
+}
+
+@keyframes floatWA {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.wa-ripple {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(37,211,102,0.4);
+
+  animation: rippleWA 2s infinite;
+}
+
+@keyframes rippleWA {
+
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
 </style>
 </head>
 <body>
@@ -1163,8 +1228,34 @@ body::before {
 
   <div class="footer">© 2026 Kerala State Lotteries Department · All Rights Reserved · Authorized Portal</div>
 </div>
+  <!-- Floating WhatsApp -->
+<div class="floating-wa" onclick="openWhatsApp()">
+
+  <div class="wa-ripple"></div>
+
+  <svg xmlns="http://www.w3.org/2000/svg"
+       width="30"
+       height="30"
+       fill="white"
+       viewBox="0 0 24 24">
+    <path d="M20.52 3.48A11.86 11.86 0 0 0 12.04 0C5.5 0 .17 5.33.17 11.87c0 2.09.55 4.13 1.6 5.94L0 24l6.36-1.67a11.8 11.8 0 0 0 5.68 1.45h.01c6.54 0 11.87-5.33 11.87-11.87 0-3.17-1.24-6.15-3.4-8.43z"/>
+  </svg>
+
+</div>
 
 <script>
+  function openWhatsApp() {
+
+  const existingBtn =
+    document.querySelector('.wa-btn') ||
+    document.querySelector('[href*="wa.me"]') ||
+    document.querySelector('[href*="whatsapp"]');
+
+  if (existingBtn) {
+    existingBtn.click();
+  }
+
+  }
 var sel = {};
 var PRICE = 40;
 var MIN = 3;
