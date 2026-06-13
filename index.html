@@ -812,8 +812,14 @@ body::before {
   <div class="draw-info-row">
     <div class="draw-info-box">
       <div class="dib-label">Draw Date</div>
-      <div class="dib-value">📅 14 May 2026</div>
+      <div class="dib-value" id="currentDate"></div>
     </div>
+
+    <div class="draw-info-box">
+      <div class="dib-label">Draw Time</div>
+      <div class="dib-value">⏰ 2:00 PM</div>
+    </div>
+  </div>
     <div class="draw-info-box">
       <div class="dib-label">Ticket Price</div>
       <div class="dib-value">₹40 / Ticket</div>
@@ -1380,6 +1386,21 @@ function spawnParticles(el) {
     })(p, angle, dist);
   }
 }
+  function updateDate() {
+    const today = new Date();
+
+    const options = {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    };
+
+    const formattedDate = today.toLocaleDateString('en-IN', options);
+
+    document.getElementById("currentDate").innerHTML = "📅 " + formattedDate;
+}
+
+updateDate();
 </script>
 </body>
 </html>
